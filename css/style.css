@@ -5,3 +5,9 @@
     border-radius: 5px;
     display: none;
 }
+
+.abc::before{content: 'a';}
+
+.yellow-bg {
+    background: yellow;
+}
