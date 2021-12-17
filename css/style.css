@@ -12,6 +12,17 @@
     background: yellow;
 } */
 
+a{
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+    color: black;
+
+}
+
 .black-background{
     background: rgba(0,0,0,0.5);
     position: fixed;
@@ -33,4 +44,17 @@
     background: url(../images/bg.jpg);
     background-size: cover;
     color: white;
+    border-radius: 0px;
+}
+
+.nav-menu{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    
+}
+
+.nav-sub{
+    display: none;
 }

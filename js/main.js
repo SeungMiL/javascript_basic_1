@@ -27,8 +27,67 @@
 
 // $('#test').addClass('yellow-bg');
 
-logBtn = document.querySelector('.btn');
+// logBtn = document.querySelector('.btn');
 
-logBtn.addEventListener('click', function(){
-    document.querySelector('.black-background').style.display = 'block';
+// logBtn.addEventListener('click', function(){
+//     document.querySelector('.black-background').style.display = 'block';
+// })
+
+
+
+
+
+
+$('#login').on('click', function(){
+    if($('#test-input').val() == '안녕'){
+    $('.black-background').fadeIn();
+}
+});
+
+
+$('#product-nav').on('click', function(){
+    $('.list-group').slideToggle();
 })
+
+
+
+$('.btn-danger').on('click', function(){
+    $('.black-background').fadeOut();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
