@@ -38,10 +38,25 @@
 
 
 
+
+$('form').on('submit', function(e){
+    if($('#email').val() == ''){
+        e.preventDefault();
+        $('.email-alert').show();
+    } else if($('#password').val() == ''){
+        e.preventDefault();
+        $('.password-alert').show();
+    }
+    
+})
+
+
+
+
 $('#login').on('click', function(){
-    if($('#test-input').val() == '안녕'){
+
     $('.black-background').fadeIn();
-}
+
 });
 
 
@@ -51,9 +66,19 @@ $('#product-nav').on('click', function(){
 
 
 
+
+
 $('.btn-danger').on('click', function(){
     $('.black-background').fadeOut();
+    $('.email-alert').fadeOut();
+    $('.password-alert').fadeOut();
 })
+
+
+
+
+
+
 
 
 

@@ -13,12 +13,28 @@
   </head>
   <body>
 
+ 
+
+
     <div class="black-background">
         <div class="white-background">
             <p>로그인하세요</p>
-            <button type="button" class="btn btn-danger">닫기</button>
+            <form action="login.php">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" id="email">
+                <p class="email-alert">이메일이 빈칸입니다</p>
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" id="password">
+                <p class="password-alert">비밀번호가 빈칸입니다</p>
+              </div>
+              <button id="submit-btn" type="submit" class="btn btn-primary">전송</button>
+              <button type="button" class="btn btn-danger">닫기</button>
+            </form>
+
         </div>
     </div>
+
 
 
     <div class="nav-menu">
@@ -42,7 +58,7 @@
         <a id="login" class="btn btn-primary btn-lg" href="#" role="button">Log in</a>
       </div>
 
-      <input id="test-input">
+      <!-- <input id="test-input"> -->
 
     <!-- Optional JavaScript; choose one of the two! -->
 
