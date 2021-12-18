@@ -66,3 +66,12 @@ a:hover{
 .password-alert{
     display: none;
 }
+
+.left-menu {
+    width: 150px;
+    height: 100%;
+    background: black;
+    color: white;
+    position: fixed;
+    margin-left: -150px;
+}
