@@ -29,7 +29,17 @@ a:hover{
     z-index: 5;
     width: 100%;
     height: 100%;
-    display: none;
+    display: block;
+    transition: all 1s;
+    transform: translateY(-1200px);
+}
+
+.slide-down{
+    transform: translateY(0%);
+}
+
+.slide-up{
+    transform: translateY(-100%);
 }
 
 .white-background{
@@ -74,4 +84,27 @@ a:hover{
     color: white;
     position: fixed;
     margin-left: -150px;
+}
+
+
+.slide-box{
+    width: 100vw;
+    float: left;
+}
+
+.slide-container{
+    width: 300vw;
+}
+
+.slide-move{
+    transform: translateX(100%);
+}
+
+
+.slide-box img {
+    width: 100%;
+}
+
+.slide-wrap{
+    overflow: hidden;
 }

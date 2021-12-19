@@ -36,27 +36,51 @@
 
 
 
-
+var 이메일안내창 = $('.email-alert');
+var 패스워드안내창 = $('.password-alert')
+var 입력한이메일 = $('#email').val();
+var 입력한패스워드 = $('#password').val();
 
 
 $('form').on('submit', function(e){
-    if($('#email').val() == ''){
+    if(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(입력한이메일) == false){
         e.preventDefault();
-        $('.email-alert').show();
-    } else if($('#password').val() == ''){
+    } else if (입력한이메일 == ''){
         e.preventDefault();
-        $('.password-alert').show();
     }
+
     
-})
+    if(/[A-Z]+/.test(입력한패스워드) == false){
+        e.preventDefault();
+    }
+
+    
+
+
+
+    // if($('#email').val() == ''){
+    //     e.preventDefault();
+    //     $('.email-alert').show();
+    // } else if($('#password').val() == ''){
+    //     e.preventDefault();
+    //     $('.password-alert').show();
+    // }
+    
+});
+
+
+// /\S+@\S+\.\S+/.test('asdf@asd.com')
+
+
+
+
 
 
 
 
 $('#login').on('click', function(){
-
-    $('.black-background').fadeIn();
-
+    $('.black-background').addClass('slide-down')
+    $('.black-background').removeClass('slide-up');
 });
 
 
@@ -69,7 +93,8 @@ $('#product-nav').on('click', function(){
 
 
 $('.btn-danger').on('click', function(){
-    $('.black-background').fadeOut();
+    $('.black-background').addClass('slide-up');
+    $('.black-background').removeClass('slide-down')
     $('.email-alert').fadeOut();
     $('.password-alert').fadeOut();
 })
