@@ -94,10 +94,19 @@ a:hover{
 
 .slide-container{
     width: 300vw;
+    transition: transform 1s ;
+}
+
+.sldie-origin{
+    transform: translateX(0vw);
 }
 
 .slide-move{
-    transform: translateX(100%);
+    transform: translateX(-100vw);
+}
+
+.slide-move2{
+    transform: translateX(-200vw);
 }
 
 
@@ -106,5 +115,5 @@ a:hover{
 }
 
 .slide-wrap{
-    overflow: hidden;
+    /* overflow: hidden; */
 }

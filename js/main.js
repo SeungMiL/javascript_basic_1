@@ -165,11 +165,26 @@ $('#show-menu').on('click', function(){
     $('.left-menu').animate({ marginLeft : '0px'});
 })
 
+$('.btn1').on('click', function(){
+    $('.slide-container').addClass('slide-origin');
+    $('.slide-container').removeClass('slide-move');
+    $('.slide-container').removeClass('slide-move2');
+
+})
 
 
 
+$('.btn2').on('click', function(){
+    $('.slide-container').addClass('slide-move');
+    $('.slide-container').removeClass('slide-move2');
 
+})
 
+$('.btn3').on('click', function(){
+    $('.slide-container').addClass('slide-move2');
+    $('.slide-container').removeClass('slide-move');
+
+})
 
 
 
