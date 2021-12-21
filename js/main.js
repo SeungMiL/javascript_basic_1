@@ -188,10 +188,19 @@ $('.btn3').on('click', function(){
 
 
 
+let slideView = 1;
 
 
-
-
+$('.slide-next').on('click', function(){
+    if( slideView == 1 ){
+    $('.slide-container').addClass('slide-move');
+    slideView = 2;
+    } else if( slideView == 2){
+        $('.slide-container').addClass('slide-move2');
+    slideView = 3;
+    }
+    
+})
 
 
 

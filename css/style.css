@@ -115,5 +115,12 @@ a:hover{
 }
 
 .slide-wrap{
-    /* overflow: hidden; */
+    overflow: hidden;
+    position: relative;
+}
+
+.slide-next{
+    position: absolute;
+    top: 45%;
+    right: 0;
 }
