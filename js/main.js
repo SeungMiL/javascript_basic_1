@@ -191,15 +191,36 @@ $('.btn3').on('click', function(){
 let slideView = 1;
 
 
-$('.slide-next').on('click', function(){
-    if( slideView == 1 ){
-    $('.slide-container').addClass('slide-move');
-    slideView = 2;
-    } else if( slideView == 2){
-        $('.slide-container').addClass('slide-move2');
-    slideView = 3;
-    }
+// $('.slide-next').on('click', function(){
+//     if( slideView == 1 ){
+//     $('.slide-container').addClass('slide-move');
+//     slideView = 2;
+//     } else if( slideView == 2){
+//         $('.slide-container').addClass('slide-move2');
+//     slideView = 3;
+//     }
     
+// })
+
+
+$('.slide-next').on('click', function(){
+
+    $('.slide-container').css('transform', 'translateX(-' + slideView + '00vw)');
+    for (let i = 0; i < $('.slide-box').length; i++){
+        if( slideView < 2){
+        slideView = slideView + i;
+    }
+}
+});
+
+$('.slide-before').on('click', function(){
+
+    $('.slide-container').css('transform', 'translateX(' + slideView + '00vw)');
+    for (let i = 0; i < $('.slide-box').length; i++){
+        if( slideView > 0){
+        slideView = slideView + i;
+    }
+}
 })
 
 

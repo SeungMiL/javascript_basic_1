@@ -124,3 +124,9 @@ a:hover{
     top: 45%;
     right: 0;
 }
+
+.slide-before{
+    position: absolute;
+    top: 45%;
+    left: 0;
+}
