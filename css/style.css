@@ -186,7 +186,6 @@ ul.list {
 	border-left: 1px solid #ccc;
 	color: black;
 	margin-top: -2px;
-    
   }
   .tab-content {
 	display: none;
@@ -199,4 +198,8 @@ ul.list {
 
   .margin{
       padding: 0 0 200px 0;
+  }
+
+  .size-select{
+      display: none;
   }
