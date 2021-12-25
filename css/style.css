@@ -201,5 +201,5 @@ ul.list {
   }
 
   .size-select{
-      display: none;
+      display: block;
   }

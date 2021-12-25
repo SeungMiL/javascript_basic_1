@@ -263,23 +263,43 @@ $('.tab-button').eq(i).on('click', function(){
 //     $('.tab-content').eq(2).addClass('show');
 // })
 
-$('#option1').on('change', function(){
-    if($('#option1').val() == '셔츠'){
-        $('.size-select').show();
-    } else{
-        $('.size-select').hide();
-    }
-})
+// $('#option1').on('change', function(){
+//     if($('#option1').val() == '셔츠'){
+//         $('.size-select').show();
+//     } else{
+//         $('.size-select').hide();
+//     }
+// });
 
 
 
 
 
+// $('#option1').on('change', function(){
+//     if($('#option1').val() == '셔츠'){
+//         $('#option2').html('');
+//         var temple = '<option>95</option><option>100</option><option>105</option>';
+//         $('#option2').append(temple);
+//     }
+    
+    
+//     else if ($('#option1').val() == '바지'){
+//         $('#option2').html('');
+//         var temple2 = '<option>28</option><option>30</option><option>32</option>';
+//         $('#option2').append(temple2);
+//     }
+// });
 
 
+let itemSize = [28, 30, 32, 34, 36, 38, 40];
 
-
-
-
-
-
+$('#option1').on('change', function(){    
+    if ($('#option1').val() == '바지'){
+        
+        itemSize.forEach(function(i){
+            let temple2 = `<option>${i}</option>`;
+            $('#option2').append(temple2);
+        })
+        
+    
+}});
