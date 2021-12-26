@@ -235,15 +235,25 @@ $(window).on('scroll', function(){
 }
 });
 
-for(let i = 0; i < $('.tab-button').length; i++){
-$('.tab-button').eq(i).on('click', function(){
+// for(let i = 0; i < $('.tab-button').length; i++){
+// $('.tab-button').eq(i).on('click', function(){
+//     openTab(i)
 
+// })};
+
+$('.list').on('click', function(e){
+
+    openTab(e.target.dataset.id)
+
+})
+
+
+function openTab(i){
     $('.tab-button').removeClass('active');
     $('.tab-content').removeClass('show');
-
     $('.tab-button').eq(i).addClass('active');
     $('.tab-content').eq(i).addClass('show');
-})};
+}
 
 // $('.tab-button').eq(1).on('click', function(){
 
@@ -303,3 +313,98 @@ $('#option1').on('change', function(){
         
     
 }});
+
+
+let array = [7,3,5,2,40];
+// array.sort(function(a,b){
+//     return a - b;
+// });
+
+// ?만원 미만 상품 고를때
+// let newArray = array.filter(function(a){
+//         return a < 4;
+//     })
+    // 상품전체 배열에 영향줄때
+    // let newArray2 = array.map(function(a){
+    //     return a * 2
+    // })
+
+
+let products = [
+    { id : 0, price : 70000, title : 'Blossom Dress' },
+    { id : 1, price : 50000, title : 'Springfield Shirt' },
+    { id : 2, price : 60000, title : 'Black Monastery' }
+  ]
+ $('.card-group').html(
+     products.forEach(function(){
+        let template2 = `<div class="card">
+        <img src="https://via.placeholder.com/600">
+        <div class="card-body">
+          <h5 class="title"></h5>
+          <p class="price">가격 :</p>
+          <button class="btn btn-danger">주문하기</button>
+        </div>
+      </div>`;
+      $('.card-group').append(template2);
+     })
+  )
+
+   $('#sortPrice').on('click', function(){
+       products.sort(function(a,b){
+           return a.price - b.price
+       })
+       sortPrice1()
+
+   })
+
+   $('#sortPrice2').on('click', function(){
+       products.sort(function(a,b){
+       if(a.title < b.title == true){
+           return -1
+       } else {
+           return 1
+       }
+       })
+       sortPrice1()
+   })
+
+   $('#sortPrice3').on('click', function(){
+    let newProduct = products.filter(function(a){
+        return a.price <= 60000;
+    })
+
+    newProduct.forEach(function(a){
+        let template = `        <div class="card">
+        <img src="https://via.placeholder.com/600">
+        <div class="card-body">
+          <h5 class="title">${a.title}</h5>
+          <p class="price">가격 : ${a.price}</p>
+          <button class="btn btn-danger">주문하기</button>
+        </div>
+      </div>`;
+        $('.card-group').append(template)
+    })
+
+
+
+})
+
+
+   function sortPrice1(){
+    for(i = 0; i<3; i++){
+        $('.title').eq(i).html(products[i].title)
+        $('.price').eq(i).html('가격 : ' + products[i].price)}
+   }
+
+
+
+ for(i = 0; i<3; i++){
+  $('.title').eq(i).html(products[i].title)
+  $('.price').eq(i).html('가격 : ' + products[i].price)
+
+//   $('.title').eq(1).html(products[1].title)
+//   $('.price').eq(1).html('가격 : ' + products[1].price)
+
+//   $('.title').eq(2).html(products[2].title)
+//   $('.price').eq(2).html('가격 : ' + products[2].price)
+}
