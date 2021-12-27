@@ -333,15 +333,34 @@ let array = [7,3,5,2,40];
 let products = [
     { id : 0, price : 70000, title : 'Blossom Dress' },
     { id : 1, price : 50000, title : 'Springfield Shirt' },
-    { id : 2, price : 60000, title : 'Black Monastery' }
-  ]
+    { id : 2, price : 60000, title : 'Black Monastery' },
+    { id : 3, price : 55000, title : 'Pupple Onepiece' }
+  ];
+
+  let products2 = [...products];
+
+  function groupHtml(){
+    products2.forEach(function(a){
+        let template3 = `<div class="card">
+        <img src="https://via.placeholder.com/600">
+        <div class="card-body">
+          <h5 class="title">${a.title}</h5>
+          <p class="price">가격 : ${a.price}</p>
+          <button class="btn btn-danger">주문하기</button>
+        </div>
+      </div>`;
+      $('.card-group').append(template3);
+     })
+  }
+
+
  $('.card-group').html(
-     products.forEach(function(){
+     products.forEach(function(a){
         let template2 = `<div class="card">
         <img src="https://via.placeholder.com/600">
         <div class="card-body">
-          <h5 class="title"></h5>
-          <p class="price">가격 :</p>
+          <h5 class="title">${a.title}</h5>
+          <p class="price">가격 : ${a.price}</p>
           <button class="btn btn-danger">주문하기</button>
         </div>
       </div>`;
@@ -350,25 +369,38 @@ let products = [
   )
 
    $('#sortPrice').on('click', function(){
-       products.sort(function(a,b){
+    $('.card').remove();
+
+    groupHtml();
+
+
+       products2.sort(function(a,b){
            return a.price - b.price
        })
-       sortPrice1()
+       sortPrice2()
 
    })
 
    $('#sortPrice2').on('click', function(){
-       products.sort(function(a,b){
+
+    $('.card').remove();
+
+    groupHtml();
+
+
+       products2.sort(function(a,b){
        if(a.title < b.title == true){
            return -1
        } else {
            return 1
        }
        })
-       sortPrice1()
+       sortPrice2()
    })
 
    $('#sortPrice3').on('click', function(){
+       $('.card').remove();
+
     let newProduct = products.filter(function(a){
         return a.price <= 60000;
     })
@@ -391,14 +423,21 @@ let products = [
 
 
    function sortPrice1(){
-    for(i = 0; i<3; i++){
+    for(i = 0; i<$('.card').length; i++){
         $('.title').eq(i).html(products[i].title)
         $('.price').eq(i).html('가격 : ' + products[i].price)}
    }
 
+   function sortPrice2(){
+    for(i = 0; i<$('.card').length; i++){
+        $('.title').eq(i).html(products2[i].title)
+        $('.price').eq(i).html('가격 : ' + products2[i].price)}
+   }
 
 
- for(i = 0; i<3; i++){
+
+
+ for(i = 0; i<$('.card').length; i++){
   $('.title').eq(i).html(products[i].title)
   $('.price').eq(i).html('가격 : ' + products[i].price)
 
