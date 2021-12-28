@@ -447,3 +447,16 @@ let products = [
 //   $('.title').eq(2).html(products[2].title)
 //   $('.price').eq(2).html('가격 : ' + products[2].price)
 }
+
+
+
+$(window).on('scroll', function(){
+    let height = $(window).scrollTop();
+    console.log(height);
+
+    let y = (-1/700) * height + 87/7;
+
+    $('.card-box').eq(0).css('opacity', y);
+    $('.card-box').eq(0).css('scale', y);
+
+})
