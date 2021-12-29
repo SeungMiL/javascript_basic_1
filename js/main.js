@@ -454,9 +454,30 @@ $(window).on('scroll', function(){
     let height = $(window).scrollTop();
     console.log(height);
 
-    let y = (-1/700) * height + 87/7;
+    let y = (-1/800) * height + 87/7;
 
+    let z = (-1/5600) * height + 132/50;
+
+
+    
     $('.card-box').eq(0).css('opacity', y);
-    $('.card-box').eq(0).css('scale', y);
+    $('.card-box').eq(0).css('transform', `scale(${z})`);
+
+    
 
 })
+
+let typeH = document.querySelector('.typetitle');
+
+let originType = document.querySelector('.typetitle').innerHTML;
+
+document.querySelector('.typebtn').addEventListener('click', function(){
+    typeH.innerHTML = '';
+
+    for(let i = 0; i < originType.length; i++){
+    setTimeout(function(){
+        
+        typeH.innerHTML = typeH.innerHTML + originType[i]
+    }, 100 * i)}
+})
+
