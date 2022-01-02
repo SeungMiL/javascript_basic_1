@@ -1,13 +1,31 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({extended : true}));
+const MongoClient = require('mongodb').MongoClient;
 
-app.use(express.static(__dirname))
+let db;
+MongoClient.connect('mongodb+srv://CS526350:dltmdals1234@cluster0.yaogt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
 
-app.listen(8080, function(){
-    console.log('listening on 8080')
-});
+    if(err){return console.log(에러)};
+
+    db = client.db('practice');
+
+    db.collection('post').insertOne({이름 : '승민', 나이 : 20, _id : 10}, function(erro, resu){
+        console.log('저장완료');
+    });
+
+
+    app.listen(8080, function(){
+        console.log('listening on 8080')
+    });
+})
+// const bodyParser = require('body-parser')
+// app.use(bodyParser.urlencoded({extended : true}));
+app.use(express.urlencoded({extended: true}));
+
+
+app.use(express.static(__dirname));
+
+
 
 app.get('/practice', function(req, res){
     res.send('js & jquery & node practice site')
@@ -30,4 +48,7 @@ app.get('/write', function(req,res){
 app.post('/add', function(req, res){
     res.send('전송완료')
     console.log(req.body)
+    db.collection('post').insertOne({제목 : req.body.title, 날짜 : req.body.date}, function(err,res){
+        console.log('저장완료!')
+    })
 });
