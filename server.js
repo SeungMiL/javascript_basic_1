@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
+app.set('view engine', 'ejs');
+
 
 let db;
 MongoClient.connect('mongodb+srv://CS526350:dltmdals1234@cluster0.yaogt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
@@ -52,3 +54,17 @@ app.post('/add', function(req, res){
         console.log('저장완료!')
     })
 });
+
+app.get('/list', function(req,res){
+
+    db.collection('post').find().toArray(function(err,resu){
+        console.log(resu);
+        res.render('list.ejs', {posts : resu});
+    });
+
+
+
+    
+
+    
+})
