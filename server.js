@@ -50,10 +50,15 @@ app.get('/write', function(req,res){
 app.post('/add', function(req, res){
     res.send('전송완료')
     console.log(req.body)
-    db.collection('post').insertOne({제목 : req.body.title, 날짜 : req.body.date}, function(err,res){
-        console.log('저장완료!')
-    })
+    db.collection('counter').findOne({name : "게시물갯수"}, function(err,resu){
+        console.log(resu.totalPost)
+    });
+    // db.collection('post').insertOne({_id : +1, 제목 : req.body.title, 날짜 : req.body.date}, function(err,res){
+    //     console.log('저장완료!')
+    // })
 });
+
+
 
 app.get('/list', function(req,res){
 
@@ -61,10 +66,6 @@ app.get('/list', function(req,res){
         console.log(resu);
         res.render('list.ejs', {posts : resu});
     });
-
-
-
-    
 
     
 })
