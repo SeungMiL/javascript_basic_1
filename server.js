@@ -51,10 +51,15 @@ app.post('/add', function(req, res){
     res.send('전송완료');
     console.log(req.body);
     db.collection('counter').findOne({name : "게시물갯수"}, function(err,resu){
-        console.log(resu.totalPost)
+        console.log(resu.totalPost);
+
         let totalNum = resu.totalPost;
 
-        db.collection('post').insertOne({_id : totalNum +1, 제목 : req.body.title, 날짜 : req.body.date}, function(err,res){
+        db.collection('post').insertOne({_id : (totalNum +1), 제목 : req.body.title, 날짜 : req.body.date}, function(err,resu){
+            db.collection('counter').updateOne({name : "게시물갯수"}, { $inc : {totalPost : 1}}, function(err, resu){
+                if(err){return console.log(err)}
+                res.send('전송완료');
+            })
             console.log('저장완료!')
         });
     });
