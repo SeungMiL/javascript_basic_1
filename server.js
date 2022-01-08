@@ -11,9 +11,9 @@ MongoClient.connect('mongodb+srv://CS526350:dltmdals1234@cluster0.yaogt.mongodb.
 
     db = client.db('practice');
 
-    db.collection('post').insertOne({이름 : '승민', 나이 : 20, _id : 10}, function(erro, resu){
-        console.log('저장완료');
-    });
+    // db.collection('post').insertOne({이름 : '승민', 나이 : 20, _id : 1}, function(erro, resu){
+    //     console.log('저장완료');
+    // });
 
 
     app.listen(8080, function(){
@@ -50,20 +50,17 @@ app.get('/write', function(req,res){
 app.post('/add', function(req, res){
     res.send('전송완료');
     console.log(req.body);
-    db.collection('counter').findOne({name : "게시물갯수"}, function(err,resu){
+    db.collection('counter').findOne({name : '게시물갯수'}, function(err,resu){
         console.log(resu.totalPost);
 
         let totalNum = resu.totalPost;
 
         db.collection('post').insertOne({_id : (totalNum +1), 제목 : req.body.title, 날짜 : req.body.date}, function(err,resu){
-            db.collection('counter').updateOne({name : "게시물갯수"}, { $inc : {totalPost : 1}}, function(err, resu){
+            db.collection('counter').updateOne({name : '게시물갯수'}, { $inc : {totalPost : 1}}, function(err, resu){
                 if(err){return console.log(err)}
-                res.send('전송완료');
             })
-            console.log('저장완료!')
-        });
-    });
-
+        })
+    })
 });
 
 
@@ -76,13 +73,12 @@ app.get('/list', function(req,res){
     });
 
     
-})
-
-app.delete('/delete', function(req, res){
-    req.body._id = parseInt(req.body._id)
-    db.collection('post').deleteOne(req.body, function(err,resu){
-        console.log('삭제완료')
-    })
-
-    res.send('삭제완료')
 });
+
+app.delete('/delete', function(req,res){
+    console.log(req.body);
+    req.body._id = parseInt(req.body._id);
+    db.collection('post').deleteOne(req.body, function(err,resu){
+        console.log('삭제완료');
+    })
+})
