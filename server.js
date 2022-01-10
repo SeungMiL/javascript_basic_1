@@ -4,6 +4,8 @@ const MongoClient = require('mongodb').MongoClient;
 app.set('view engine', 'ejs');
 
 
+app.use('/public', express.static('public'));
+
 let db;
 MongoClient.connect('mongodb+srv://CS526350:dltmdals1234@cluster0.yaogt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
 
