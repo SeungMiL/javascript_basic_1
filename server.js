@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express = require('express');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
@@ -15,7 +18,7 @@ app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
 
 let db;
-MongoClient.connect('mongodb+srv://CS526350:dltmdals1234@cluster0.yaogt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', function(err, client){
+MongoClient.connect(process.env.DB_URL , function(err, client){
 
     if(err){return console.log(에러)};
 
@@ -84,6 +87,17 @@ app.get('/list', function(req,res){
 
     
 });
+
+
+
+app.get('/search', (req,res) => {
+    console.log(req.query.value);
+    db.collection('post').find({제목 : req.query.value}).toArray((err,resu) => {
+        console.log(resu);
+    })
+})
+
+
 
 app.delete('/delete', function(req,res){
     console.log(req.body);
