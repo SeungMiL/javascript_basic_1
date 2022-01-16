@@ -11,6 +11,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const {ObjectId} = require('mongodb');
+98
 app.use(session({secret : '비밀코드', resave : true, saveUninitialized : false}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -307,3 +308,53 @@ app.get('/chat', function(req,res){
 
    
 })
+
+app.post('/message', whatLogin, function(req,res){
+
+
+    let msgPoint = {
+        parent :  req.body.parent,
+        content :  req.body.content,
+        userid :  req.user.id,
+        date : new Date(),
+    }
+
+
+    db.collection('message').insertOne(msgPoint).then(()=>{
+        console.log('db저장성공')
+        res.send('db저장성공!!')
+    })
+
+})
+
+app.get('/message/:id', whatLogin, function(req,res){
+
+    res.writeHead(200, {
+
+        "Connection": "keep-alive",
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+
+    });
+    
+    db.collection('message').find({ parent : req.params.id}).toArray()
+    .then((resu)=>{
+        res.write('event: test\n');
+    res.write('data:' + JSON.stringify(resu) + '\n\n');
+    })
+
+    const pipeline = [
+        {$match: { 'fullDocument.parent' : req.params.id }}
+    ];
+
+    const collection = db.collection('message');
+    const changeStream = collection.watch(pipeline);
+    changeStream.on('change',(result)=>{
+        res.write('event: test\n');
+        res.write('data:' + JSON.stringify([result.fullDocument]) + '\n\n');
+    });
+
+
+    
+
+});
