@@ -3,6 +3,10 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+
+const http = require('http').createServer(app);
+const {Server} = require('socket.io');
+const io = new Server(http);
 const MongoClient = require('mongodb').MongoClient;
 
 const methodOverride = require('method-override');
@@ -31,7 +35,7 @@ MongoClient.connect(process.env.DB_URL , function(err, client){
     // });
 
 
-    app.listen(8080, function(){
+    http.listen(8080, function(){
         console.log('listening on 8080')
     });
 })
@@ -358,3 +362,16 @@ app.get('/message/:id', whatLogin, function(req,res){
     
 
 });
+
+app.get('/socket', function(req,res){
+    res.render('socket.ejs');
+})
+
+io.on('connection', function(socket){
+    console.log('유저접속됨')
+
+    socket.on('user-send', function(data){
+        console.log(data);
+    })
+
+})
